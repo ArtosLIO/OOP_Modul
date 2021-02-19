@@ -1,0 +1,12 @@
+[ScorePlayers]
+ihor = 6
+den = 10
+jon = 3
+luck = 12
+nick = 25
+sofa = 14
+kent = 15
+artem = 20
+andray = 7
+max = 33
+dron = 22
