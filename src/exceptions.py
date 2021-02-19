@@ -1,12 +1,28 @@
+import configparser
+from src.settings import GameValue
 
 
 class GameOver(Exception):
     '''This is exception ...'''
-    def save(self, score):
-        with open('../score.txt', 'a') as file_score:
-            file_score.write(score)
+    @staticmethod
+    def __init__(name, score):
+        conf = configparser.RawConfigParser()
+        conf.read("score.txt")
+        if GameValue.VALIDATE:
+            score_player = int(conf["ScorePlayers"][name])
+            if score > score_player:
+                conf.set("ScorePlayers", name, score)
+                with open('score.txt', 'w') as file_score:
+                    conf.write(file_score)
+        else:
+            conf.set("ScorePlayers", name, score)
+            with open('score.txt', 'w') as file_score:
+                conf.write(file_score)
 
 
 class EnemyDown(Exception):
-    def best_ten_gamer(self):
-        pass
+    pass
+
+
+class GameExit(Exception):
+    pass
