@@ -78,6 +78,7 @@ class Player(object):
 
 class Score(object):
     '''Class Score ...'''
+
     TopScore = []
 
     def __init__(self):

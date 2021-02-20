@@ -62,6 +62,7 @@ Enter value from 1 to 3 for choose a hero to defence: """)
             input()
         except EnemyDown:
             player.score += 5
+            player.lives += 1
             GameValue.set_level()
             input("Enemy defeated. Your level up.")
             enemy = Enemy(GameValue.LEVEL)
@@ -73,10 +74,15 @@ Enter value from 1 to 3 for choose a hero to defence: """)
 def validate_player(name_player):
     conf = configparser.RawConfigParser()
     conf.read("score.txt")
-    if conf.has_option("ScorePlayers", name_player):
-        GameValue.set_validate()
-        score = conf["ScorePlayers"][name_player]
-        GameValue.set_top_score(score)
+    if conf.has_section("ScorePlayers"):
+        if conf.has_option("ScorePlayers", name_player):
+            GameValue.set_validate()
+            score = conf["ScorePlayers"][name_player]
+            GameValue.set_top_score(score)
+    else:
+        conf.add_section("ScorePlayers")
+        with open('score.txt', 'w') as file_score:
+            conf.write(file_score)
 
 
 @try_game_function

@@ -3,7 +3,8 @@ from src.settings import GameValue
 
 
 class GameOver(Exception):
-    '''This is exception ...'''
+    '''This is exception game over ...'''
+
     @staticmethod
     def __init__(name, score):
         conf = configparser.RawConfigParser()
@@ -21,8 +22,10 @@ class GameOver(Exception):
 
 
 class EnemyDown(Exception):
+    '''Your enemy down'''
     pass
 
 
 class GameExit(Exception):
+    '''Quick program'''
     pass
